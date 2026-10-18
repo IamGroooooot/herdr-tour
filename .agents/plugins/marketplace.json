@@ -1,0 +1,20 @@
+{
+  "name": "herdr-tour",
+  "interface": {
+    "displayName": "herdr tour"
+  },
+  "plugins": [
+    {
+      "name": "herdr-tour",
+      "source": {
+        "source": "local",
+        "path": "./plugins/herdr-tour"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>m1-pm</title>
+<script>if (self !== top) document.documentElement.classList.add("embed")</script>
+<style>
+:root{--bg:#fffff8;--ink:#1c1b19;--ink2:#4b4a45;--ink3:#8a8880;--rule:#d9d7cc;--wash:#efede1;--accent:#b0261c}
+@media (prefers-color-scheme:dark){:root{--bg:#161614;--ink:#ebe9e1;--ink2:#c4c2b9;--ink3:#8f8d85;--rule:#3d3c38;--wash:#252420;--accent:#f2735f}}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;padding:28px 16px 40px;color:var(--ink);background:var(--bg);font:500 15px/1.5 -apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR","Segoe UI",Roboto,sans-serif;font-variant-numeric:oldstyle-nums}
+main{max-width:980px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+h1{margin:0;font-size:19px;font-weight:650;line-height:1.35}
+nav{font-size:13px;color:var(--ink3);white-space:nowrap}
+nav a{color:var(--ink2);text-decoration:none;margin-left:14px}
+nav a:hover{color:var(--accent)}
+.fig{margin-top:18px;overflow-x:auto}
+svg{display:block;width:100%;min-width:680px;height:auto}
+svg text{font-family:inherit;font-weight:500;fill:var(--ink);font-size:13.5px}
+svg .k{font-size:15px;font-weight:650}
+svg .s{font-size:12px;fill:var(--ink3)}
+svg .p{font-size:12.5px;font-weight:650;fill:var(--ink3);letter-spacing:.04em}
+svg .c{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:12.5px;fill:var(--ink2)}
+svg .cs{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:11.5px;fill:var(--ink3)}
+svg .a{fill:var(--accent)}
+svg .g{fill:var(--ink3)}
+.ln{stroke:var(--ink);stroke-width:1.4;fill:none}
+.lg{stroke:var(--ink3);stroke-width:1.2;fill:none}
+.lr{stroke:var(--rule);stroke-width:1;fill:none}
+.la{stroke:var(--accent);stroke-width:1.8;fill:none}
+.bar{stroke:var(--ink);stroke-width:7;fill:none}
+.barg{stroke:var(--ink3);stroke-width:7;fill:none}
+.bara{stroke:var(--accent);stroke-width:7;fill:none}
+.dash{stroke-dasharray:5 4}
+.dots{stroke-dasharray:1 4;stroke-linecap:round}
+.box{fill:none;stroke:var(--ink);stroke-width:1.2}
+.boxg{fill:none;stroke:var(--ink3);stroke-width:1}
+.boxa{fill:none;stroke:var(--accent);stroke-width:1.6}
+.wash{fill:var(--wash);stroke:none}
+.fi{fill:var(--ink);stroke:none}
+.fg{fill:var(--ink3);stroke:none}
+.fa{fill:var(--accent);stroke:none}
+.fb{fill:var(--bg);stroke:var(--ink);stroke-width:1.3}
+.fbg{fill:var(--bg);stroke:var(--ink3);stroke-width:1.1}
+.fba{fill:var(--bg);stroke:var(--accent);stroke-width:1.5}
+footer{margin-top:10px;font-size:12px;color:var(--ink3)}
+.embed body{padding:6px}
+.embed header,.embed footer{display:none}
+.embed .fig{margin-top:0}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>pm은 나누고, 브리핑하고, 점검하고, 디브리프를 남긴다</h1>
+<nav><span>중급 1/3</span><a href="../../index.html">index</a><a href="../b3-gotopicker/diagram.html">&lt;- b3-gotopicker</a><a href="../m2-swarm/diagram.html">m2-swarm -&gt;</a></nav>
+</header>
+<div class="fig">
+<svg viewBox="0 0 960 470" role="img" aria-label="swimlanes: the tour agent sends the prompt to pm and picks the fastest option when pm blocks on a question; pm reads PLAN.md, splits, briefs front and back in parallel with SendMessage, collects replies, checks the result against the completion condition, and writes a debrief" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker>
+<marker id="ahg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink3)"/></marker>
+<marker id="aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--accent)"/></marker>
+</defs>
+<text x="150" y="89" class="l" text-anchor="end">투어 agent</text>
+<line x1="170" y1="84" x2="898" y2="84" class="lr"/>
+<text x="150" y="155" class="k" text-anchor="end">pm</text>
+<line x1="170" y1="150" x2="898" y2="150" class="lr"/>
+<text x="150" y="221" class="k" text-anchor="end">front</text>
+<line x1="170" y1="216" x2="898" y2="216" class="lr"/>
+<text x="150" y="287" class="k" text-anchor="end">back</text>
+<line x1="170" y1="282" x2="898" y2="282" class="lr"/>
+<text x="150" y="353" class="l g" text-anchor="end">실행 확인</text>
+<line x1="170" y1="348" x2="898" y2="348" class="lr"/>
+<line x1="184" y1="84" x2="842" y2="84" class="lg dash"/>
+<text x="513" y="72" class="s" text-anchor="middle">pm이 끝나기를 기다린다</text>
+<line x1="184" y1="90" x2="184" y2="142" class="ln" marker-end="url(#ah)"/>
+<text x="192" y="110" class="s">프롬프트</text>
+<line x1="184" y1="150" x2="289" y2="150" class="barg"/>
+<line x1="254" y1="90" x2="254" y2="138" class="la" marker-end="url(#aha)"/>
+<text x="262" y="128" class="s a">막히면 골라 준다</text>
+<path d="M254,143 L261,150 L254,157 L247,150 z" class="fa"/>
+<line x1="289" y1="150" x2="562" y2="150" class="lg dash"/>
+<text x="443" y="138" class="s" text-anchor="middle">front, back을 기다린다</text>
+<line x1="562" y1="150" x2="828" y2="150" class="barg"/>
+<line x1="289" y1="156" x2="289" y2="208" class="ln" marker-end="url(#ah)"/>
+<path d="M299.5,156 V274" class="ln" marker-end="url(#ah)"/>
+<text x="281" y="194" class="cs" text-anchor="end">SendMessage</text>
+<text x="281" y="210" class="s" text-anchor="end">동시에</text>
+<line x1="289" y1="216" x2="541" y2="216" class="bar"/>
+<circle cx="553" cy="216" r="4.4" class="fb"/>
+<line x1="299.5" y1="282" x2="485" y2="282" class="bar"/>
+<circle cx="497" cy="282" r="4.4" class="fb"/>
+<text x="415" y="238" class="s" text-anchor="middle">화면</text>
+<text x="394" y="304" class="s" text-anchor="middle">server, 데이터</text>
+<path d="M562.0,210 V158" class="lg dots" marker-end="url(#ahg)"/>
+<path d="M562.0,276 V158" class="lg dots" marker-end="url(#ahg)"/>
+<text x="570" y="194" class="cs">SendMessage 답</text>
+<line x1="604" y1="156" x2="604" y2="340" class="ln" marker-end="url(#ah)"/>
+<text x="612" y="304" class="s">실행</text>
+<line x1="604" y1="348" x2="898" y2="348" class="barg"/>
+<text x="612" y="372" class="s">완료 조건과 대조</text>
+<circle cx="646" cy="348" r="5" class="fa"/>
+<text x="656" y="338" class="s a">점검</text>
+<text x="716" y="174" class="s" text-anchor="middle">완료 조건</text>
+<circle cx="716" cy="150" r="4" class="fi"/>
+<line x1="828" y1="144" x2="828" y2="92" class="ln" marker-end="url(#ah)"/>
+<text x="836" y="121" class="s">보고</text>
+<text x="850" y="89" class="s a">디브리프</text>
+<line x1="170" y1="400" x2="898" y2="400" class="lr"/>
+<line x1="170" y1="400" x2="170" y2="405" class="lr"/>
+<text x="170" y="420" class="s" text-anchor="middle">0</text>
+<line x1="520" y1="400" x2="520" y2="405" class="lr"/>
+<text x="520" y="420" class="s" text-anchor="middle">3분</text>
+<line x1="870" y1="400" x2="870" y2="405" class="lr"/>
+<text x="870" y="420" class="s" text-anchor="middle">6분</text>
+</svg>
+</div>
+<footer>herdr 0.9.5, <a href="README.md" style="color:inherit">README.md</a></footer>
+</main>
+</body>
+</html>

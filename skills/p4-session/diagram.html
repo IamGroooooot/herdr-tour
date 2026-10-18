@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>p4-session</title>
+<script>if (self !== top) document.documentElement.classList.add("embed")</script>
+<style>
+:root{--bg:#fffff8;--ink:#1c1b19;--ink2:#4b4a45;--ink3:#8a8880;--rule:#d9d7cc;--wash:#efede1;--accent:#b0261c}
+@media (prefers-color-scheme:dark){:root{--bg:#161614;--ink:#ebe9e1;--ink2:#c4c2b9;--ink3:#8f8d85;--rule:#3d3c38;--wash:#252420;--accent:#f2735f}}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;padding:28px 16px 40px;color:var(--ink);background:var(--bg);font:500 15px/1.5 -apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR","Segoe UI",Roboto,sans-serif;font-variant-numeric:oldstyle-nums}
+main{max-width:980px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+h1{margin:0;font-size:19px;font-weight:650;line-height:1.35}
+nav{font-size:13px;color:var(--ink3);white-space:nowrap}
+nav a{color:var(--ink2);text-decoration:none;margin-left:14px}
+nav a:hover{color:var(--accent)}
+.fig{margin-top:18px;overflow-x:auto}
+svg{display:block;width:100%;min-width:680px;height:auto}
+svg text{font-family:inherit;font-weight:500;fill:var(--ink);font-size:13.5px}
+svg .k{font-size:15px;font-weight:650}
+svg .s{font-size:12px;fill:var(--ink3)}
+svg .p{font-size:12.5px;font-weight:650;fill:var(--ink3);letter-spacing:.04em}
+svg .c{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:12.5px;fill:var(--ink2)}
+svg .cs{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:11.5px;fill:var(--ink3)}
+svg .a{fill:var(--accent)}
+svg .g{fill:var(--ink3)}
+.ln{stroke:var(--ink);stroke-width:1.4;fill:none}
+.lg{stroke:var(--ink3);stroke-width:1.2;fill:none}
+.lr{stroke:var(--rule);stroke-width:1;fill:none}
+.la{stroke:var(--accent);stroke-width:1.8;fill:none}
+.bar{stroke:var(--ink);stroke-width:7;fill:none}
+.barg{stroke:var(--ink3);stroke-width:7;fill:none}
+.bara{stroke:var(--accent);stroke-width:7;fill:none}
+.dash{stroke-dasharray:5 4}
+.dots{stroke-dasharray:1 4;stroke-linecap:round}
+.box{fill:none;stroke:var(--ink);stroke-width:1.2}
+.boxg{fill:none;stroke:var(--ink3);stroke-width:1}
+.boxa{fill:none;stroke:var(--accent);stroke-width:1.6}
+.wash{fill:var(--wash);stroke:none}
+.fi{fill:var(--ink);stroke:none}
+.fg{fill:var(--ink3);stroke:none}
+.fa{fill:var(--accent);stroke:none}
+.fb{fill:var(--bg);stroke:var(--ink);stroke-width:1.3}
+.fbg{fill:var(--bg);stroke:var(--ink3);stroke-width:1.1}
+.fba{fill:var(--bg);stroke:var(--accent);stroke-width:1.5}
+footer{margin-top:10px;font-size:12px;color:var(--ink3)}
+.embed body{padding:6px}
+.embed header,.embed footer{display:none}
+.embed .fig{margin-top:0}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>다시 켜면 layout은 남고, process는 resume 정보가 있는 pane만 돌아온다</h1>
+<nav><span>고급 4/4</span><a href="../../index.html">index</a><a href="../p3-socket/diagram.html">&lt;- p3-socket</a></nav>
+</header>
+<div class="fig">
+<svg viewBox="0 0 960 600" role="img" aria-label="named sessions are separate servers sharing config and plugins; restart keeps layout and loses processes; the pane with resume info restarts its command and the plain pane returns as a new shell; three remote routes compared below" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker>
+<marker id="ahg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink3)"/></marker>
+<marker id="aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--accent)"/></marker>
+</defs>
+<text x="200" y="52" class="s" text-anchor="middle">config와 plugin은 같이 쓴다</text>
+<path d="M200,60 V76" class="lg"/>
+<path d="M80,92 V76 H310 V92" class="lg"/>
+<text x="80" y="112" class="k" text-anchor="middle">default</text>
+<text x="80" y="140" class="cs" text-anchor="middle">herdr.sock</text>
+<text x="80" y="162" class="cs" text-anchor="middle">session.json</text>
+<text x="310" y="112" class="k" text-anchor="middle">tour-s</text>
+<text x="310" y="140" class="cs" text-anchor="middle">sessions/tour-s/herdr.sock</text>
+<text x="310" y="162" class="cs" text-anchor="middle">session.json</text>
+<line x1="178" y1="100" x2="178" y2="186" class="lr"/>
+<rect x="470" y="90" width="200" height="110" class="box"/>
+<line x1="570" y1="90" x2="570" y2="200" class="ln"/>
+<text x="520" y="148" class="c" text-anchor="middle">vim</text>
+<text x="620" y="148" class="c" text-anchor="middle">sleep 3600</text>
+<text x="620" y="170" class="cs" text-anchor="middle">-- top</text>
+<text x="570" y="80" class="s" text-anchor="middle">sandbox</text>
+<rect x="740" y="90" width="200" height="110" class="box"/>
+<line x1="840" y1="90" x2="840" y2="200" class="ln"/>
+<text x="790" y="148" class="c g" text-anchor="middle">zsh</text>
+<text x="890" y="148" class="c a" text-anchor="middle">top</text>
+<text x="790" y="170" class="s" text-anchor="middle">새 shell</text>
+<text x="890" y="170" class="cs" text-anchor="middle">resume</text>
+<text x="840" y="80" class="s" text-anchor="middle">sandbox</text>
+<line x1="680" y1="146" x2="728" y2="146" class="ln" marker-end="url(#ah)"/>
+<text x="704" y="132" class="cs" text-anchor="middle">stop</text>
+<text x="704" y="166" class="cs" text-anchor="middle">server</text>
+<text x="520" y="222" class="s" text-anchor="middle">보통 pane</text>
+<text x="790" y="222" class="s" text-anchor="middle">보통 pane</text>
+<text x="620" y="222" class="s" text-anchor="middle">resume 보고</text>
+<text x="890" y="222" class="s" text-anchor="middle">resume 보고</text>
+<line x1="470" y1="240" x2="940" y2="240" class="lr"/>
+<text x="470" y="262" class="s">layout</text>
+<text x="790" y="262" class="l" text-anchor="middle">✓</text>
+<text x="890" y="262" class="l" text-anchor="middle">✓</text>
+<text x="470" y="282" class="s">process</text>
+<text x="790" y="282" class="l" text-anchor="middle">✗</text>
+<text x="890" y="282" class="l" text-anchor="middle">✗</text>
+<text x="470" y="302" class="s">resume</text>
+<text x="790" y="302" class="l" text-anchor="middle"></text>
+<text x="890" y="302" class="l a" text-anchor="middle">✓</text>
+<line x1="24" y1="330" x2="936" y2="330" class="lr"/>
+<text x="24" y="362" class="p">원격</text>
+<text x="24" y="384" class="s">local</text>
+<text x="304" y="384" class="s" text-anchor="end">host</text>
+<line x1="164" y1="394" x2="164" y2="534" class="lg dash"/>
+<text x="24" y="570" class="c">ssh host, herdr</text>
+<rect x="34" y="434" width="80" height="44" rx="4" class="boxg"/>
+<text x="74" y="461" class="s" text-anchor="middle">terminal</text>
+<rect x="204" y="404" width="90" height="40" rx="4" class="box"/>
+<text x="249" y="429" class="k" text-anchor="middle">TUI</text>
+<rect x="204" y="474" width="90" height="40" rx="4" class="box"/>
+<text x="249" y="499" class="k" text-anchor="middle">server</text>
+<line x1="114" y1="456" x2="202" y2="428" class="lg" marker-end="url(#ahg)" marker-start="url(#ahg)"/>
+<line x1="249" y1="444" x2="249" y2="472" class="ln" marker-end="url(#ah)" marker-start="url(#ah)"/>
+<text x="340" y="384" class="s">local</text>
+<text x="620" y="384" class="s" text-anchor="end">host</text>
+<line x1="480" y1="394" x2="480" y2="534" class="lg dash"/>
+<text x="340" y="570" class="c">herdr --remote host</text>
+<rect x="350" y="434" width="90" height="44" rx="4" class="box"/>
+<text x="395" y="461" class="k" text-anchor="middle">TUI</text>
+<rect x="520" y="434" width="90" height="44" rx="4" class="box"/>
+<text x="565" y="461" class="k" text-anchor="middle">server</text>
+<line x1="440" y1="456" x2="518" y2="456" class="ln" marker-end="url(#ah)" marker-start="url(#ah)"/>
+<text x="656" y="384" class="s">local</text>
+<text x="936" y="384" class="s" text-anchor="end">host</text>
+<line x1="796" y1="394" x2="796" y2="534" class="lg dash"/>
+<text x="656" y="570" class="c a">herdr machine add host</text>
+<rect x="666" y="398" width="96" height="84" rx="4" class="box"/>
+<text x="714" y="420" class="k" text-anchor="middle">TUI</text>
+<line x1="674" y1="430" x2="754" y2="430" class="lr"/>
+<text x="676" y="450" class="s">Local</text>
+<text x="676" y="472" class="s a">remote</text>
+<rect x="666" y="502" width="96" height="36" rx="4" class="box"/>
+<text x="714" y="525" class="k" text-anchor="middle">server</text>
+<path d="M714,482 V500" class="ln" marker-end="url(#ah)" marker-start="url(#ah)"/>
+<rect x="836" y="434" width="90" height="44" rx="4" class="box"/>
+<text x="881" y="461" class="k" text-anchor="middle">server</text>
+<line x1="762" y1="464" x2="834" y2="458" class="la" marker-end="url(#aha)" marker-start="url(#aha)"/>
+<text x="881" y="500" class="s" text-anchor="middle">+ host 2, 3</text>
+</svg>
+</div>
+<footer>herdr 0.9.5, <a href="README.md" style="color:inherit">README.md</a></footer>
+</main>
+</body>
+</html>

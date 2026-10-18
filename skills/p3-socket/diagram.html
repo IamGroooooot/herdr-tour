@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>p3-socket</title>
+<script>if (self !== top) document.documentElement.classList.add("embed")</script>
+<style>
+:root{--bg:#fffff8;--ink:#1c1b19;--ink2:#4b4a45;--ink3:#8a8880;--rule:#d9d7cc;--wash:#efede1;--accent:#b0261c}
+@media (prefers-color-scheme:dark){:root{--bg:#161614;--ink:#ebe9e1;--ink2:#c4c2b9;--ink3:#8f8d85;--rule:#3d3c38;--wash:#252420;--accent:#f2735f}}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;padding:28px 16px 40px;color:var(--ink);background:var(--bg);font:500 15px/1.5 -apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR","Segoe UI",Roboto,sans-serif;font-variant-numeric:oldstyle-nums}
+main{max-width:980px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+h1{margin:0;font-size:19px;font-weight:650;line-height:1.35}
+nav{font-size:13px;color:var(--ink3);white-space:nowrap}
+nav a{color:var(--ink2);text-decoration:none;margin-left:14px}
+nav a:hover{color:var(--accent)}
+.fig{margin-top:18px;overflow-x:auto}
+svg{display:block;width:100%;min-width:680px;height:auto}
+svg text{font-family:inherit;font-weight:500;fill:var(--ink);font-size:13.5px}
+svg .k{font-size:15px;font-weight:650}
+svg .s{font-size:12px;fill:var(--ink3)}
+svg .p{font-size:12.5px;font-weight:650;fill:var(--ink3);letter-spacing:.04em}
+svg .c{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:12.5px;fill:var(--ink2)}
+svg .cs{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:11.5px;fill:var(--ink3)}
+svg .a{fill:var(--accent)}
+svg .g{fill:var(--ink3)}
+.ln{stroke:var(--ink);stroke-width:1.4;fill:none}
+.lg{stroke:var(--ink3);stroke-width:1.2;fill:none}
+.lr{stroke:var(--rule);stroke-width:1;fill:none}
+.la{stroke:var(--accent);stroke-width:1.8;fill:none}
+.bar{stroke:var(--ink);stroke-width:7;fill:none}
+.barg{stroke:var(--ink3);stroke-width:7;fill:none}
+.bara{stroke:var(--accent);stroke-width:7;fill:none}
+.dash{stroke-dasharray:5 4}
+.dots{stroke-dasharray:1 4;stroke-linecap:round}
+.box{fill:none;stroke:var(--ink);stroke-width:1.2}
+.boxg{fill:none;stroke:var(--ink3);stroke-width:1}
+.boxa{fill:none;stroke:var(--accent);stroke-width:1.6}
+.wash{fill:var(--wash);stroke:none}
+.fi{fill:var(--ink);stroke:none}
+.fg{fill:var(--ink3);stroke:none}
+.fa{fill:var(--accent);stroke:none}
+.fb{fill:var(--bg);stroke:var(--ink);stroke-width:1.3}
+.fbg{fill:var(--bg);stroke:var(--ink3);stroke-width:1.1}
+.fba{fill:var(--bg);stroke:var(--accent);stroke-width:1.5}
+footer{margin-top:10px;font-size:12px;color:var(--ink3)}
+.embed body{padding:6px}
+.embed header,.embed footer{display:none}
+.embed .fig{margin-top:0}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>CLI는 한 번 묻고 닫고, 구독은 연결을 열어 둔 채 계속 받는다</h1>
+<nav><span>고급 3/4</span><a href="../../index.html">index</a><a href="../p2-events/diagram.html">&lt;- p2-events</a><a href="../p4-session/diagram.html">p4-session -&gt;</a></nav>
+</header>
+<div class="fig">
+<svg viewBox="0 0 960 610" role="img" aria-label="top: a CLI wait holds one connection until the first matching change and closes, events.subscribe keeps one connection open and receives every pane change; bottom: live.py sits between the herdr socket and the browser, snapshot once, subscribe kept open, prompt or send_text per input" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker>
+<marker id="ahg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink3)"/></marker>
+<marker id="aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--accent)"/></marker>
+</defs>
+<text x="40" y="40" class="p">연결 수명</text>
+<line x1="40" y1="50" x2="920" y2="50" class="lr"/>
+<text x="40" y="108" class="c">herdr agent wait pm</text>
+<text x="40" y="126" class="cs">--until working</text>
+<line x1="230" y1="104" x2="300" y2="104" class="bar"/>
+<line x1="300" y1="104" x2="900" y2="104" class="lg dots"/>
+<text x="310" y="92" class="s">응답 하나, 연결 닫힘</text>
+<text x="900" y="126" class="s" text-anchor="end">그 뒤 변화는 못 본다</text>
+<text x="40" y="190" class="c">events.subscribe</text>
+<text x="40" y="208" class="s">연결 하나, 구독은 pane마다</text>
+<line x1="230" y1="186" x2="900" y2="186" class="bar"/>
+<path d="M900,178 L914,186 L900,194 z" class="fi"/>
+<circle cx="300" cy="164" r="5.4" class="fb"/>
+<path d="M300,158.6 A5.4,5.4 0 0 0 300,169.4 z" class="fi"/>
+<text x="300" y="212" class="s" text-anchor="middle">pm</text>
+<text x="300" y="228" class="s" text-anchor="middle">working</text>
+<circle cx="390" cy="164" r="5.4" class="fb"/>
+<path d="M390,158.6 A5.4,5.4 0 0 0 390,169.4 z" class="fi"/>
+<text x="390" y="212" class="s" text-anchor="middle">front</text>
+<text x="390" y="228" class="s" text-anchor="middle">working</text>
+<path d="M520,157 L527,164 L520,171 L513,164 z" class="fa"/>
+<text x="520" y="212" class="s a" text-anchor="middle">pm</text>
+<text x="520" y="228" class="s a" text-anchor="middle">blocked</text>
+<circle cx="650" cy="164" r="6" class="fi"/>
+<text x="650" y="212" class="s" text-anchor="middle">back</text>
+<text x="650" y="228" class="s" text-anchor="middle">done</text>
+<circle cx="780" cy="164" r="5.4" class="fb"/>
+<text x="780" y="212" class="s" text-anchor="middle">front</text>
+<text x="780" y="228" class="s" text-anchor="middle">idle</text>
+<circle cx="300" cy="82" r="5.4" class="fb"/>
+<path d="M300,76.6 A5.4,5.4 0 0 0 300,87.4 z" class="fi"/>
+<text x="40" y="290" class="p">live.py</text>
+<line x1="40" y1="300" x2="920" y2="300" class="lr"/>
+<text x="110" y="330" class="k" text-anchor="middle">herdr server</text>
+<text x="110" y="348" class="cs" text-anchor="middle">$HERDR_SOCKET_PATH</text>
+<line x1="110" y1="360" x2="110" y2="566" class="lr"/>
+<text x="480" y="330" class="k" text-anchor="middle">live.py</text>
+<text x="480" y="348" class="s" text-anchor="middle">python3 표준 라이브러리</text>
+<line x1="480" y1="360" x2="480" y2="566" class="lr"/>
+<text x="850" y="330" class="k" text-anchor="middle">브라우저</text>
+<text x="850" y="348" class="s" text-anchor="middle">표 + 입력창</text>
+<line x1="850" y1="360" x2="850" y2="566" class="lr"/>
+<line x1="474" y1="400" x2="116" y2="400" class="ln" marker-end="url(#ah)"/>
+<text x="295" y="390" class="c" text-anchor="middle">session.snapshot</text>
+<text x="295" y="420" class="s" text-anchor="middle">처음 한 번</text>
+<line x1="116" y1="465" x2="460" y2="465" class="bar"/>
+<path d="M460,457 L474,465 L460,473 z" class="fi"/>
+<line x1="486" y1="465" x2="830" y2="465" class="bar"/>
+<path d="M830,457 L844,465 L830,473 z" class="fi"/>
+<text x="295" y="455" class="c" text-anchor="middle">events.subscribe</text>
+<text x="295" y="485" class="s" text-anchor="middle">열어 둔 채</text>
+<text x="665" y="455" class="c" text-anchor="middle">SSE /events</text>
+<line x1="474" y1="530" x2="116" y2="530" class="ln" marker-end="url(#ah)"/>
+<text x="295" y="520" class="c" text-anchor="middle">agent.prompt, pane.send_text</text>
+<text x="295" y="550" class="s" text-anchor="middle">보낼 때마다</text>
+<line x1="844" y1="530" x2="486" y2="530" class="ln" marker-end="url(#ah)"/>
+<text x="665" y="520" class="c" text-anchor="middle">POST /send</text>
+<text x="40" y="596" class="s">한 줄에 JSON 하나(NDJSON), 연결 하나에 요청 하나</text>
+</svg>
+</div>
+<footer>herdr 0.9.5, <a href="README.md" style="color:inherit">README.md</a></footer>
+</main>
+</body>
+</html>

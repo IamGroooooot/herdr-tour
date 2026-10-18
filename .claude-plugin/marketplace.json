@@ -1,0 +1,14 @@
+{
+  "name": "herdr-tour",
+  "description": "초급 6분, 중급 15분, 고급은 자기 속도로 herdr를 익히는 agent skill 투어. 여러 agent를 띄워 보고, agent 팀에 일을 나눠 맡기고, 나만의 Workflow를 만든다.",
+  "owner": {
+    "name": "IamGroooooot"
+  },
+  "plugins": [
+    {
+      "name": "herdr-tour",
+      "source": "./",
+      "description": "초급 6분, 중급 15분, 고급은 자기 속도로 herdr를 익히는 agent skill 투어. 여러 agent를 띄워 보고, agent 팀에 일을 나눠 맡기고, 나만의 Workflow를 만든다."
+    }
+  ]
+}

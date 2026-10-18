@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>b3-gotopicker</title>
+<script>if (self !== top) document.documentElement.classList.add("embed")</script>
+<style>
+:root{--bg:#fffff8;--ink:#1c1b19;--ink2:#4b4a45;--ink3:#8a8880;--rule:#d9d7cc;--wash:#efede1;--accent:#b0261c}
+@media (prefers-color-scheme:dark){:root{--bg:#161614;--ink:#ebe9e1;--ink2:#c4c2b9;--ink3:#8f8d85;--rule:#3d3c38;--wash:#252420;--accent:#f2735f}}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;padding:28px 16px 40px;color:var(--ink);background:var(--bg);font:500 15px/1.5 -apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR","Segoe UI",Roboto,sans-serif;font-variant-numeric:oldstyle-nums}
+main{max-width:980px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+h1{margin:0;font-size:19px;font-weight:650;line-height:1.35}
+nav{font-size:13px;color:var(--ink3);white-space:nowrap}
+nav a{color:var(--ink2);text-decoration:none;margin-left:14px}
+nav a:hover{color:var(--accent)}
+.fig{margin-top:18px;overflow-x:auto}
+svg{display:block;width:100%;min-width:680px;height:auto}
+svg text{font-family:inherit;font-weight:500;fill:var(--ink);font-size:13.5px}
+svg .k{font-size:15px;font-weight:650}
+svg .s{font-size:12px;fill:var(--ink3)}
+svg .p{font-size:12.5px;font-weight:650;fill:var(--ink3);letter-spacing:.04em}
+svg .c{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:12.5px;fill:var(--ink2)}
+svg .cs{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:11.5px;fill:var(--ink3)}
+svg .a{fill:var(--accent)}
+svg .g{fill:var(--ink3)}
+.ln{stroke:var(--ink);stroke-width:1.4;fill:none}
+.lg{stroke:var(--ink3);stroke-width:1.2;fill:none}
+.lr{stroke:var(--rule);stroke-width:1;fill:none}
+.la{stroke:var(--accent);stroke-width:1.8;fill:none}
+.bar{stroke:var(--ink);stroke-width:7;fill:none}
+.barg{stroke:var(--ink3);stroke-width:7;fill:none}
+.bara{stroke:var(--accent);stroke-width:7;fill:none}
+.dash{stroke-dasharray:5 4}
+.dots{stroke-dasharray:1 4;stroke-linecap:round}
+.box{fill:none;stroke:var(--ink);stroke-width:1.2}
+.boxg{fill:none;stroke:var(--ink3);stroke-width:1}
+.boxa{fill:none;stroke:var(--accent);stroke-width:1.6}
+.wash{fill:var(--wash);stroke:none}
+.fi{fill:var(--ink);stroke:none}
+.fg{fill:var(--ink3);stroke:none}
+.fa{fill:var(--accent);stroke:none}
+.fb{fill:var(--bg);stroke:var(--ink);stroke-width:1.3}
+.fbg{fill:var(--bg);stroke:var(--ink3);stroke-width:1.1}
+.fba{fill:var(--bg);stroke:var(--accent);stroke-width:1.5}
+footer{margin-top:10px;font-size:12px;color:var(--ink3)}
+.embed body{padding:6px}
+.embed header,.embed footer{display:none}
+.embed .fig{margin-top:0}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>질문하며 기다리는 pm이 위로 올라오고, prefix+g에서 바로 찾아간다</h1>
+<nav><span>초급 3/3</span><a href="../../index.html">index</a><a href="../b2-team/diagram.html">&lt;- b2-team</a><a href="../m1-pm/diagram.html">m1-pm -&gt;</a></nav>
+</header>
+<div class="fig">
+<svg viewBox="0 0 960 470" role="img" aria-label="the most urgent state rolls up to tab and workspace; the Goto picker filters blocked agents and jumps to them; pm asks a question and goes blocked, then working, done while unseen, then idle" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker>
+<marker id="ahg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink3)"/></marker>
+<marker id="aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--accent)"/></marker>
+</defs>
+<path d="M30,74 V101 H52" class="lg"/>
+<path d="M30,74 V141 H52" class="la"/>
+<path d="M64,156 V181 H86" class="la"/>
+<path d="M64,156 V217 H86" class="lg"/>
+<path d="M64,156 V253 H86" class="lg"/>
+<path d="M30,52 L37,59 L30,66 L23,59 z" class="fa"/>
+<text x="44" y="64"><tspan class="s">workspace </tspan><tspan class="k">demo</tspan></text>
+<circle cx="64" cy="101" r="5.4" class="fb"/>
+<text x="78" y="106"><tspan class="s">tab </tspan><tspan class="k">인사</tspan></text>
+<path d="M64,134 L71,141 L64,148 L57,141 z" class="fa"/>
+<text x="78" y="146"><tspan class="s">tab </tspan><tspan class="k">개발</tspan></text>
+<path d="M98,174 L105,181 L98,188 L91,181 z" class="fa"/>
+<text x="112" y="186"><tspan class="k">pm</tspan></text>
+<circle cx="98" cy="217" r="5.4" class="fb"/>
+<text x="112" y="222"><tspan class="k">front</tspan></text>
+<circle cx="98" cy="253" r="5.4" class="fb"/>
+<text x="112" y="258"><tspan class="k">back</tspan></text>
+<text x="24" y="312" class="s">rollup</text>
+<path d="M30,328 L37,335 L30,342 L23,335 z" class="fa"/>
+<text x="42" y="340" class="l">blocked</text>
+<text x="106" y="340" class="s">&gt;</text>
+<circle cx="134" cy="335" r="6" class="fi"/>
+<text x="146" y="340" class="l">done</text>
+<text x="192" y="340" class="s">&gt;</text>
+<circle cx="220" cy="335" r="5.4" class="fb"/>
+<path d="M220,329.6 A5.4,5.4 0 0 0 220,340.4 z" class="fi"/>
+<text x="232" y="340" class="l">working</text>
+<text x="296" y="340" class="s">&gt;</text>
+<circle cx="324" cy="335" r="5.4" class="fb"/>
+<text x="336" y="340" class="l">idle</text>
+<text x="330" y="48" class="c">prefix+g</text>
+<text x="506" y="48" class="c a" text-anchor="middle">b</text>
+<text x="527" y="48" class="c" text-anchor="middle">w</text>
+<text x="548" y="48" class="c" text-anchor="middle">i</text>
+<text x="569" y="48" class="c" text-anchor="middle">d</text>
+<text x="590" y="48" class="c" text-anchor="middle">a</text>
+<line x1="500" y1="57" x2="512" y2="57" class="la"/>
+<circle cx="338" cy="77" r="4.4" class="fbg"/>
+<text x="354" y="82" class="l g">hi-claude</text>
+<text x="590" y="82" class="s" text-anchor="end">demo / 인사</text>
+<circle cx="338" cy="107" r="4.4" class="fbg"/>
+<text x="354" y="112" class="l g">hi-codex</text>
+<text x="590" y="112" class="s" text-anchor="end">demo / 인사</text>
+<path d="M338,131 L344,137 L338,143 L332,137 z" class="fa"/>
+<text x="354" y="142" class="k">pm</text>
+<text x="590" y="142" class="s" text-anchor="end">demo / 개발</text>
+<circle cx="338" cy="167" r="4.4" class="fbg"/>
+<text x="354" y="172" class="l g">front</text>
+<text x="590" y="172" class="s" text-anchor="end">demo / 개발</text>
+<circle cx="338" cy="197" r="4.4" class="fbg"/>
+<text x="354" y="202" class="l g">back</text>
+<text x="590" y="202" class="s" text-anchor="end">demo / 개발</text>
+<line x1="330" y1="230" x2="590" y2="230" class="lr"/>
+<text x="330" y="256" class="c a">b</text>
+<text x="346" y="256" class="s">blocked만 남기고 Enter로 간다</text>
+<text x="640" y="50" class="c">pm</text>
+<line x1="640" y1="150" x2="680" y2="150" class="barg"/>
+<circle cx="660" cy="174" r="4.4" class="fb"/>
+<path d="M660,169.6 A4.4,4.4 0 0 0 660,178.4 z" class="fi"/>
+<line x1="680" y1="150" x2="740" y2="150" class="bara"/>
+<path d="M710,168 L716,174 L710,180 L704,174 z" class="fa"/>
+<line x1="740" y1="150" x2="840" y2="150" class="barg"/>
+<circle cx="790" cy="174" r="4.4" class="fb"/>
+<path d="M790,169.6 A4.4,4.4 0 0 0 790,178.4 z" class="fi"/>
+<line x1="840" y1="150" x2="900" y2="150" class="bar"/>
+<circle cx="870" cy="174" r="5" class="fi"/>
+<line x1="900" y1="150" x2="930" y2="150" class="lg"/>
+<circle cx="915" cy="174" r="4.4" class="fb"/>
+<line x1="680" y1="124" x2="680" y2="142" class="lg"/>
+<text x="680" y="116" class="s" text-anchor="middle">질문 창</text>
+<line x1="740" y1="100" x2="740" y2="142" class="lg"/>
+<text x="740" y="92" class="s" text-anchor="middle">답하고 떠남</text>
+<line x1="900" y1="124" x2="900" y2="142" class="lg"/>
+<text x="900" y="116" class="s" text-anchor="middle">가서 봄</text>
+<text x="870" y="200" class="s" text-anchor="middle">안 봄</text>
+<line x1="640" y1="212" x2="930" y2="212" class="lr"/>
+<text x="840" y="232" class="cs" text-anchor="middle">PLAN.md</text>
+<text x="640" y="280" class="s">done = 끝났고 아직 안 봄</text>
+<text x="640" y="300" class="s">idle = 끝났고 봤음</text>
+</svg>
+</div>
+<footer>herdr 0.9.5, <a href="README.md" style="color:inherit">README.md</a></footer>
+</main>
+</body>
+</html>

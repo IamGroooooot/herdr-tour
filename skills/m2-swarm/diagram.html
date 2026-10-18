@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>m2-swarm</title>
+<script>if (self !== top) document.documentElement.classList.add("embed")</script>
+<style>
+:root{--bg:#fffff8;--ink:#1c1b19;--ink2:#4b4a45;--ink3:#8a8880;--rule:#d9d7cc;--wash:#efede1;--accent:#b0261c}
+@media (prefers-color-scheme:dark){:root{--bg:#161614;--ink:#ebe9e1;--ink2:#c4c2b9;--ink3:#8f8d85;--rule:#3d3c38;--wash:#252420;--accent:#f2735f}}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;padding:28px 16px 40px;color:var(--ink);background:var(--bg);font:500 15px/1.5 -apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR","Segoe UI",Roboto,sans-serif;font-variant-numeric:oldstyle-nums}
+main{max-width:980px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+h1{margin:0;font-size:19px;font-weight:650;line-height:1.35}
+nav{font-size:13px;color:var(--ink3);white-space:nowrap}
+nav a{color:var(--ink2);text-decoration:none;margin-left:14px}
+nav a:hover{color:var(--accent)}
+.fig{margin-top:18px;overflow-x:auto}
+svg{display:block;width:100%;min-width:680px;height:auto}
+svg text{font-family:inherit;font-weight:500;fill:var(--ink);font-size:13.5px}
+svg .k{font-size:15px;font-weight:650}
+svg .s{font-size:12px;fill:var(--ink3)}
+svg .p{font-size:12.5px;font-weight:650;fill:var(--ink3);letter-spacing:.04em}
+svg .c{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:12.5px;fill:var(--ink2)}
+svg .cs{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:11.5px;fill:var(--ink3)}
+svg .a{fill:var(--accent)}
+svg .g{fill:var(--ink3)}
+.ln{stroke:var(--ink);stroke-width:1.4;fill:none}
+.lg{stroke:var(--ink3);stroke-width:1.2;fill:none}
+.lr{stroke:var(--rule);stroke-width:1;fill:none}
+.la{stroke:var(--accent);stroke-width:1.8;fill:none}
+.bar{stroke:var(--ink);stroke-width:7;fill:none}
+.barg{stroke:var(--ink3);stroke-width:7;fill:none}
+.bara{stroke:var(--accent);stroke-width:7;fill:none}
+.dash{stroke-dasharray:5 4}
+.dots{stroke-dasharray:1 4;stroke-linecap:round}
+.box{fill:none;stroke:var(--ink);stroke-width:1.2}
+.boxg{fill:none;stroke:var(--ink3);stroke-width:1}
+.boxa{fill:none;stroke:var(--accent);stroke-width:1.6}
+.wash{fill:var(--wash);stroke:none}
+.fi{fill:var(--ink);stroke:none}
+.fg{fill:var(--ink3);stroke:none}
+.fa{fill:var(--accent);stroke:none}
+.fb{fill:var(--bg);stroke:var(--ink);stroke-width:1.3}
+.fbg{fill:var(--bg);stroke:var(--ink3);stroke-width:1.1}
+.fba{fill:var(--bg);stroke:var(--accent);stroke-width:1.5}
+footer{margin-top:10px;font-size:12px;color:var(--ink3)}
+.embed body{padding:6px}
+.embed header,.embed footer{display:none}
+.embed .fig{margin-top:0}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>worktree마다 작업 사본이 따로라서 섞이지 않고, 끝은 완료 조건이 정한다</h1>
+<nav><span>중급 2/3</span><a href="../../index.html">index</a><a href="../m1-pm/diagram.html">&lt;- m1-pm</a><a href="../m3-plugin/diagram.html">m3-plugin -&gt;</a></nav>
+</header>
+<div class="fig">
+<svg viewBox="0 0 960 570" role="img" aria-label="a repo fans out into worktree checkouts, each with its own workspace and agent; three patterns: best-of-N picks one passing candidate, divide and merge merges split work one by one, nominal group pools independent work and drops duplicates" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink)"/></marker>
+<marker id="ahg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink3)"/></marker>
+<marker id="aha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--accent)"/></marker>
+</defs>
+<text x="24" y="116" class="c">~/herdr-demo</text>
+<text x="24" y="136" class="s">main</text>
+<path d="M190,112 H204 V66 H226" class="lg"/>
+<text x="230" y="70" class="c">swarm/a</text>
+<line x1="298" y1="66" x2="316" y2="66" class="lg"/>
+<text x="322" y="70" class="cs">~/.herdr/worktrees/herdr-demo/swarm-a</text>
+<line x1="614" y1="66" x2="632" y2="66" class="lg"/>
+<circle cx="646" cy="65" r="5.4" class="fb"/>
+<path d="M646,59.6 A5.4,5.4 0 0 0 646,70.4 z" class="fi"/>
+<text x="660" y="70" class="k">s-a</text>
+<line x1="760" y1="66" x2="820" y2="66" class="bar"/>
+<path d="M190,112 H204 V116 H226" class="lg"/>
+<text x="230" y="120" class="c">swarm/b</text>
+<line x1="298" y1="116" x2="316" y2="116" class="lg"/>
+<text x="322" y="120" class="cs">~/.herdr/worktrees/herdr-demo/swarm-b</text>
+<line x1="614" y1="116" x2="632" y2="116" class="lg"/>
+<circle cx="646" cy="115" r="5.4" class="fb"/>
+<path d="M646,109.6 A5.4,5.4 0 0 0 646,120.4 z" class="fi"/>
+<text x="660" y="120" class="k">s-b</text>
+<line x1="760" y1="116" x2="840" y2="116" class="bar"/>
+<path d="M190,112 H204 V166 H226" class="lg"/>
+<text x="230" y="170" class="c">swarm/c</text>
+<line x1="298" y1="166" x2="316" y2="166" class="lg"/>
+<text x="322" y="170" class="cs">~/.herdr/worktrees/herdr-demo/swarm-c</text>
+<line x1="614" y1="166" x2="632" y2="166" class="lg"/>
+<circle cx="646" cy="165" r="5.4" class="fb"/>
+<path d="M646,159.6 A5.4,5.4 0 0 0 646,170.4 z" class="fi"/>
+<text x="660" y="170" class="k">s-c</text>
+<line x1="760" y1="166" x2="820" y2="166" class="bar"/>
+<path d="M628,50 H622 V186 H628" class="lg"/>
+<text x="622" y="206" class="s" text-anchor="middle">demo group</text>
+<line x1="890" y1="46" x2="890" y2="188" class="ln dash"/>
+<text x="890" y="38" class="c" text-anchor="middle">wait</text>
+<text x="760" y="38" class="s">동시에</text>
+<line x1="24" y1="240" x2="936" y2="240" class="lr"/>
+<text x="24" y="280" class="k">Best-of-N</text>
+<text x="24" y="300" class="s">같은 일을 여럿에게. 완료 조건을 통과한 하나를 merge</text>
+<line x1="204" y1="392" x2="294" y2="392" class="lg"/>
+<circle cx="30" cy="392" r="5" class="fi"/>
+<text x="30" y="418" class="cs" text-anchor="middle">main</text>
+<path d="M30,392 C64,392 64,344 94,344" class="lg"/>
+<rect x="94" y="335" width="18" height="18" rx="2" class="boxg"/>
+<text x="122" y="348" class="cs">claude</text>
+<text x="174" y="348" class="s">통과</text>
+<path d="M30,392 C64,392 64,392 94,392" class="lg"/>
+<rect x="94" y="383" width="18" height="18" rx="2" class="boxg"/>
+<text x="122" y="396" class="cs">claude</text>
+<text x="174" y="396" class="s a">통과</text>
+<path d="M204,392 H286" class="la" marker-end="url(#aha)"/>
+<path d="M30,392 C64,392 64,440 94,440" class="lg"/>
+<rect x="94" y="431" width="18" height="18" rx="2" class="boxg"/>
+<text x="122" y="444" class="cs">codex</text>
+<text x="174" y="444" class="s">실패</text>
+<circle cx="290" cy="392" r="5" class="fa"/>
+<text x="338" y="280" class="k">Divide and Merge</text>
+<text x="338" y="300" class="s">다른 일을 나눠서. 하나씩 merge, 매번 확인</text>
+<line x1="518" y1="392" x2="608" y2="392" class="lg"/>
+<circle cx="344" cy="392" r="5" class="fi"/>
+<text x="344" y="418" class="cs" text-anchor="middle">main</text>
+<path d="M344,392 C378,392 378,344 408,344" class="lg"/>
+<rect x="408" y="335" width="18" height="18" rx="2" class="boxg"/>
+<text x="436" y="348" class="s">1번째</text>
+<path d="M484,344 C502,344 502,392 518,392" class="la" marker-end="url(#aha)"/>
+<circle cx="523" cy="392" r="3.5" class="fa"/>
+<path d="M344,392 C378,392 378,392 408,392" class="lg"/>
+<rect x="408" y="383" width="18" height="18" rx="2" class="boxg"/>
+<text x="436" y="396" class="s">2번째</text>
+<path d="M484,392 C532,392 532,392 548,392" class="la" marker-end="url(#aha)"/>
+<circle cx="553" cy="392" r="3.5" class="fa"/>
+<path d="M344,392 C378,392 378,440 408,440" class="lg"/>
+<rect x="408" y="431" width="18" height="18" rx="2" class="boxg"/>
+<text x="436" y="444" class="s">3번째</text>
+<path d="M484,440 C562,440 562,392 578,392" class="la" marker-end="url(#aha)"/>
+<circle cx="583" cy="392" r="3.5" class="fa"/>
+<circle cx="604" cy="392" r="5" class="fa"/>
+<text x="436" y="482" class="s">공유 계약은 먼저 고정</text>
+<text x="652" y="280" class="k">Nominal Group</text>
+<text x="652" y="300" class="s">같은 질문을 서로 못 보게. 전부 모아 중복만 뺀다</text>
+<line x1="832" y1="392" x2="922" y2="392" class="lg"/>
+<circle cx="658" cy="392" r="5" class="fi"/>
+<text x="658" y="418" class="cs" text-anchor="middle">main</text>
+<path d="M658,392 C692,392 692,344 722,344" class="lg"/>
+<rect x="722" y="335" width="18" height="18" rx="2" class="boxg"/>
+<text x="750" y="348" class="s">혼자</text>
+<path d="M782,344 C852,344 852,392 906,392" class="la" marker-end="url(#aha)"/>
+<path d="M658,392 C692,392 692,392 722,392" class="lg"/>
+<rect x="722" y="383" width="18" height="18" rx="2" class="boxg"/>
+<text x="750" y="396" class="s">혼자</text>
+<path d="M782,392 C852,392 852,392 906,392" class="la" marker-end="url(#aha)"/>
+<path d="M658,392 C692,392 692,440 722,440" class="lg"/>
+<rect x="722" y="431" width="18" height="18" rx="2" class="boxg"/>
+<text x="750" y="444" class="s">혼자</text>
+<path d="M782,440 C852,440 852,392 906,392" class="la" marker-end="url(#aha)"/>
+<circle cx="918" cy="392" r="5" class="fa"/>
+<text x="750" y="482" class="s">합칠 때 중복만 뺀다</text>
+<text x="24" y="540" class="s">고르기, 나눠 합치기, 따로 모으기. 셋 다 완료 조건이 끝을 정한다</text>
+</svg>
+</div>
+<footer>herdr 0.9.5, <a href="README.md" style="color:inherit">README.md</a></footer>
+</main>
+</body>
+</html>
